@@ -6,7 +6,7 @@ import GemCard from '@/components/GemCard';
 import Navbar from '@/components/Navbar';
 import { Input } from '@/components/ui/input';
 
-const categories: Category[] = ['waterfalls', 'culture', 'cuisine', 'wildlife'];
+const categories: Category[] = ['waterfalls', 'culture', 'cuisine', 'wildlife', 'landmarks'];
 
 const Explore = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,7 +30,7 @@ const Explore = () => {
       <div className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <h1 className="font-display text-4xl font-bold text-foreground mb-2">Explore Hidden Gems</h1>
-          <p className="text-muted-foreground mb-8">Browse all 100 destinations across India</p>
+          <p className="text-muted-foreground mb-8">Browse all {gems.length} destinations across India</p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <div className="relative flex-1 max-w-md">

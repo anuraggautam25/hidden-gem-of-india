@@ -65,6 +65,7 @@ export default {
         culture: "hsl(var(--culture))",
         cuisine: "hsl(var(--cuisine))",
         wildlife: "hsl(var(--wildlife))",
+        landmarks: "hsl(var(--landmarks))",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -11,6 +11,7 @@ const categories: { key: Category; count: number }[] = [
   { key: 'culture', count: gems.filter(g => g.category === 'culture').length },
   { key: 'cuisine', count: gems.filter(g => g.category === 'cuisine').length },
   { key: 'wildlife', count: gems.filter(g => g.category === 'wildlife').length },
+  { key: 'landmarks', count: gems.filter(g => g.category === 'landmarks').length },
 ];
 
 const categoryBgClass: Record<string, string> = {
@@ -18,6 +19,7 @@ const categoryBgClass: Record<string, string> = {
   culture: 'bg-culture/10 hover:bg-culture/20 border-culture/30',
   cuisine: 'bg-cuisine/10 hover:bg-cuisine/20 border-cuisine/30',
   wildlife: 'bg-wildlife/10 hover:bg-wildlife/20 border-wildlife/30',
+  landmarks: 'bg-landmarks/10 hover:bg-landmarks/20 border-landmarks/30',
 };
 
 const Index = () => {
@@ -50,7 +52,7 @@ const Index = () => {
               Hidden Gems<br />of India
             </h1>
             <p className="text-lg sm:text-xl text-primary-foreground/80 mb-10 max-w-2xl mx-auto font-light">
-              100 breathtaking destinations across waterfalls, cultural heritage, culinary trails, and wildlife sanctuaries — curated for the curious traveler.
+              150 breathtaking destinations across waterfalls, cultural heritage, culinary trails, wildlife sanctuaries, and iconic landmarks — curated for the curious traveler.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
@@ -94,11 +96,11 @@ const Index = () => {
               Explore by Category
             </h2>
             <p className="text-muted-foreground max-w-lg mx-auto">
-              Four curated collections of India's most remarkable hidden destinations
+              Five curated collections of India's most remarkable destinations
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
             {categories.map((cat, i) => {
               const info = categoryInfo[cat.key];
               return (
