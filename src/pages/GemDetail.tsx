@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { gems, categoryInfo } from '@/data/gems';
 import MapView from '@/components/MapView';
 import Navbar from '@/components/Navbar';
+import ItineraryGenerator from '@/components/ItineraryGenerator';
 
 const categoryColorClass: Record<string, string> = {
   waterfalls: 'bg-waterfall',
@@ -80,6 +81,10 @@ const GemDetail = () => {
                 <ExternalLink className="h-4 w-4" />
                 Open in Google Maps
               </a>
+            </div>
+
+            <div className="mt-8">
+              <ItineraryGenerator gem={gem} />
             </div>
           </motion.div>
 
