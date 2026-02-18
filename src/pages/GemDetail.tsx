@@ -11,6 +11,7 @@ const categoryColorClass: Record<string, string> = {
   culture: 'bg-culture',
   cuisine: 'bg-cuisine',
   wildlife: 'bg-wildlife',
+  landmarks: 'bg-landmarks',
 };
 
 const GemDetail = () => {
@@ -66,6 +67,20 @@ const GemDetail = () => {
               </div>
 
               <p className="text-foreground/80 leading-relaxed text-lg mb-8">{gem.description}</p>
+
+              {gem.thingsToDo && gem.thingsToDo.length > 0 && (
+                <div className="bg-muted/50 border border-border rounded-lg p-5 mb-8">
+                  <h3 className="font-display text-xl font-semibold mb-3 text-card-foreground">🎯 Top Things to Do</h3>
+                  <ul className="space-y-2">
+                    {gem.thingsToDo.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-foreground/80">
+                        <span className="text-primary font-bold mt-0.5">{i + 1}.</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <div className="mb-8">
                 <h3 className="font-display text-xl font-semibold mb-4 text-card-foreground">Location</h3>

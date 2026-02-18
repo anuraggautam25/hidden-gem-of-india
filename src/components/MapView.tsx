@@ -9,6 +9,7 @@ const markerColors: Record<Category, string> = {
   culture: '#d4922a',
   cuisine: '#d4522a',
   wildlife: '#3d9c5a',
+  landmarks: '#8b5cf6',
 };
 
 interface MapViewProps {

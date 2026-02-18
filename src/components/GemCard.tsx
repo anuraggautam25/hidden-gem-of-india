@@ -9,6 +9,7 @@ const categoryColorClass: Record<string, string> = {
   culture: 'bg-culture',
   cuisine: 'bg-cuisine',
   wildlife: 'bg-wildlife',
+  landmarks: 'bg-landmarks',
 };
 
 const GemCard = ({ gem, index = 0 }: { gem: Gem; index?: number }) => {
