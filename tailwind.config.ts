@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['"Playfair Display"', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +61,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        waterfall: "hsl(var(--waterfall))",
+        culture: "hsl(var(--culture))",
+        cuisine: "hsl(var(--cuisine))",
+        wildlife: "hsl(var(--wildlife))",
       },
       borderRadius: {
         lg: "var(--radius)",
