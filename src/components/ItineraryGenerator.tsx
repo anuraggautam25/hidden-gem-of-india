@@ -6,6 +6,8 @@ import { useToast } from '@/hooks/use-toast';
 import type { Gem } from '@/data/gems';
 import { categoryInfo } from '@/data/gems';
 import { Link } from 'react-router-dom';
+import DOMPurify from 'dompurify';
+import { supabase } from '@/integrations/supabase/client';
 
 const simpleMarkdown = (text: string) =>
   text
@@ -33,11 +35,12 @@ const ItineraryGenerator = ({ gem }: { gem: Gem }) => {
       abortRef.current = new AbortController();
       const info = categoryInfo[gem.category];
 
+      const { data: { session } } = await supabase.auth.getSession();
       const resp = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-itinerary`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${session?.access_token}`,
         },
         body: JSON.stringify({
           gemName: gem.name,
@@ -134,7 +137,7 @@ const ItineraryGenerator = ({ gem }: { gem: Gem }) => {
         <div className="prose prose-sm max-w-none dark:prose-invert">
           <div
             className="text-foreground/80 text-sm leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: simpleMarkdown(itinerary) }}
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(simpleMarkdown(itinerary)) }}
           />
         </div>
       ) : (
