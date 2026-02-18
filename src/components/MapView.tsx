@@ -75,7 +75,7 @@ const MapView = ({ gems, selectedGem, className = '' }: MapViewProps) => {
     }
   }, [gems, selectedGem]);
 
-  return <div ref={mapRef} className={`w-full rounded-xl ${className}`} style={{ minHeight: '400px' }} />;
+  return <div ref={mapRef} className={`w-full rounded-xl relative z-0 ${className}`} style={{ minHeight: '400px' }} />;
 };
 
 export default MapView;
