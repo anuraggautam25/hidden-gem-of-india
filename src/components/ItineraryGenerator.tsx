@@ -7,6 +7,16 @@ import type { Gem } from '@/data/gems';
 import { categoryInfo } from '@/data/gems';
 import { Link } from 'react-router-dom';
 
+const simpleMarkdown = (text: string) =>
+  text
+    .replace(/### \*\*(.*?)\*\*/g, '<h3 class="font-display font-semibold text-base mt-4 mb-2 text-foreground">$1</h3>')
+    .replace(/### (.*)/g, '<h3 class="font-display font-semibold text-base mt-4 mb-2 text-foreground">$1</h3>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/^---$/gm, '<hr class="my-3 border-border"/>')
+    .replace(/^\* {2}/gm, '• ')
+    .replace(/\n/g, '<br/>');
+
 const ItineraryGenerator = ({ gem }: { gem: Gem }) => {
   const [itinerary, setItinerary] = useState('');
   const [loading, setLoading] = useState(false);
@@ -122,7 +132,10 @@ const ItineraryGenerator = ({ gem }: { gem: Gem }) => {
 
       {itinerary ? (
         <div className="prose prose-sm max-w-none dark:prose-invert">
-          <div className="whitespace-pre-wrap text-foreground/80 text-sm leading-relaxed">{itinerary}</div>
+          <div
+            className="text-foreground/80 text-sm leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: simpleMarkdown(itinerary) }}
+          />
         </div>
       ) : (
         <p className="text-muted-foreground text-sm">
