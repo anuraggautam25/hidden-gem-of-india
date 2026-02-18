@@ -153,7 +153,7 @@ const Index = () => {
             <span className="font-display text-lg font-bold text-foreground">Hidden Gems of India</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            Curated from @indiahiddengems — Discover the undiscovered.
+            Curated from @hiddengemofindia — Discover the undiscovered.
           </p>
         </div>
       </footer>
