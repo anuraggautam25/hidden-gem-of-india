@@ -11,6 +11,7 @@ import GemDetail from "./pages/GemDetail";
 import Auth from "./pages/Auth";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import PopularDestinations from "./pages/PopularDestinations";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/explore" element={<Explore />} />
+            <Route path="/popular" element={<PopularDestinations />} />
             <Route path="/map" element={<MapPage />} />
             <Route path="/gem/:id" element={<GemDetail />} />
             <Route path="/auth" element={<Auth />} />
