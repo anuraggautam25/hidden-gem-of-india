@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { z } from "https://esm.sh/zod@3.25.76";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -32,7 +33,21 @@ serve(async (req) => {
       });
     }
 
-    const { gemName, gemState, gemDescription, gemCategory, gemHighlight } = await req.json();
+    const inputSchema = z.object({
+      gemName: z.string().min(1).max(200),
+      gemState: z.string().min(1).max(100),
+      gemDescription: z.string().min(1).max(1000),
+      gemCategory: z.string().min(1).max(100),
+      gemHighlight: z.string().min(1).max(500),
+    });
+
+    const parseResult = inputSchema.safeParse(await req.json());
+    if (!parseResult.success) {
+      return new Response(JSON.stringify({ error: "Invalid input. Please check your request." }), {
+        status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const { gemName, gemState, gemDescription, gemCategory, gemHighlight } = parseResult.data;
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY is not configured");
@@ -93,7 +108,7 @@ What makes it special: ${gemHighlight}`;
     });
   } catch (e) {
     console.error("generate-itinerary error:", e);
-    return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "Failed to generate itinerary. Please try again." }), {
       status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
