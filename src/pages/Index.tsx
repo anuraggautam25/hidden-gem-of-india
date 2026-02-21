@@ -32,7 +32,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="Hidden Gems of India" className="w-full h-full object-cover" />
+          <img src={heroImage} alt="Hidden Gems of India" className="w-full h-full object-cover" fetchPriority="high" decoding="sync" />
           <div className="absolute inset-0" style={{ background: 'var(--hero-overlay)' }} />
         </div>
 
